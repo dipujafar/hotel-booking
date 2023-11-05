@@ -5,48 +5,49 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { BsGoogle } from "react-icons/bs";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useEffect, useState } from "react";
-import { Link} from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import Lottie from "lottie-react";
 import loginAnimation from '../assets/login_animation.json'
 import Aos from "aos";
 import 'aos/dist/aos.css';
-// import { toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
-//   const { singInWithGoogle, singInUser } = useContext(AuthContext);
-//   const [error, setError] = useState("");
+  const { singInWithGoogle, singInUser } = useAuth();
+  const [error, setError] = useState("");
   const [show, setShow] = useState(false);
-//   const location = useLocation();
-//   const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-//   const handleRegister = (e) => {
-//     e.preventDefault();
-//     const form = e.target;
-//     const email = form.email.value;
-//     const password = form.password.value;
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
-//     setError("");
-//     //singIn user
-//     singInUser(email, password)
-//       .then(() => {
-//         toast("successfully login");
-//         navigate(location?.state ? location.state : "/");
-//       })
-//       .catch((error) => setError(error.message));
-//   };
+    setError("");
+    //singIn user
+    singInUser(email, password)
+      .then(() => {
+        toast("successfully login");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => setError(error.message));
+  };
 
-  //login with google
-//   const handleGoogleSing = () => {
-//     singInWithGoogle()
-//       .then(() => {
-//         toast.success("Success Login with Google");
-//         navigate(location?.state ? location.state : "/");
-//       })
-//       .catch((error) => {
-//         setError(error.message);
-//       });
-//   };
+  // login with google
+  const handleGoogleSing = () => {
+    singInWithGoogle()
+      .then(() => {
+        toast.success("Success Login with Google");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
 
 useEffect(() => {
   Aos.init(); 
@@ -59,7 +60,7 @@ useEffect(() => {
         <h1 className="text-2xl font-medium mb-5 text-orange-400">
           LOGIN 
         </h1>
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="flex items-center mb-5 ">
             <label>
               <AiOutlineMail className="text-2xl"></AiOutlineMail>
@@ -104,12 +105,12 @@ useEffect(() => {
               Register
             </Link>
           </p>
-          {/* <p className="text-xl text-red-700">{error}</p> */}
+          <p className="text-xl text-red-700">{error}</p>
           <fieldset className="mt-5 border rounded border-orange-400 p-2">
             <legend className="text-center text-xl text-orange-400">
               LOGIN WITH
             </legend>
-            <p>
+            <p onClick={handleGoogleSing}>
               <BsGoogle className="text-2xl text-blue-500 cursor-pointer"></BsGoogle>
             </p>
           </fieldset>

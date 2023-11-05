@@ -1,7 +1,22 @@
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const Navbar = ({ children }) => {
+    const {user, logOut} = useAuth()
+
+    //user LogOut
+    const handleLogout =()=>{
+        logOut()
+        .then(()=>{
+            toast.success("Successfully Logged Out")
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    } 
+
     const navRoute = <>
         <li className='font-medium'>
             <NavLink
@@ -13,7 +28,7 @@ const Navbar = ({ children }) => {
                 Home
             </NavLink>;
         </li>
-        <li className='font-medium'>
+        {user?.email ? <button onClick={handleLogout} className='btn btn-sm'>Logout</button>: <li className='font-medium'>
             <NavLink
                 to="/login"
                 className={({ isActive }) =>
@@ -22,7 +37,8 @@ const Navbar = ({ children }) => {
             >
                 Login
             </NavLink>;
-        </li>
+        </li>}
+        
 
     </>
     return (

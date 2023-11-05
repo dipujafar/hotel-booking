@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import auth from "../firebase.confiq";
 
 export const AuthContext = createContext();
@@ -15,12 +15,34 @@ const AuthProvider = ({children}) => {
         return createUserWithEmailAndPassword(auth,email,password);
     }
 
+    const singInUser = (email, password)=>{
+        setLoading(true);
+        return signInWithEmailAndPassword(auth,email,password);
+    }
+
+
     const singInWithGoogle = () => {
         setLoading(false);
         return signInWithPopup(auth,googleProvider);
     }
 
-    const authValue ={user, loading, createUser, singInWithGoogle};
+    useEffect(()=>{
+        const unSubscribe = onAuthStateChanged(auth, currentUser=>{
+            setUser(currentUser);
+            setLoading(false);
+            console.log(currentUser)
+        });
+        return ()=>{
+            return unSubscribe()
+        }
+    },[]);
+
+    const logOut = ()=>{
+        setLoading(true);
+        return signOut(auth);
+    }
+
+    const authValue ={user, loading, createUser, singInWithGoogle,singInUser, logOut};
     return (
         <AuthContext.Provider value={authValue}>
             {children}

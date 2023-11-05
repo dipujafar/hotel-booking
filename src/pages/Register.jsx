@@ -9,10 +9,14 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { BsGoogle } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { updateProfile } from "firebase/auth";
 import useAuth from "../hooks/useAuth";
 import auth from "../firebase.confiq";
+import Aos from "aos";
+import 'aos/dist/aos.css';
+import Lottie from "lottie-react";
+import loginAnimation from '../assets/registation_amnimation.json'
 
 const Register = () => {
   const { singInWithGoogle, createUser } = useAuth()
@@ -73,9 +77,16 @@ const Register = () => {
         setError(error.message);
       });
   };
+
+  useEffect(() => {
+    Aos.init(); 
+  }, []);
   return (
-    <div className="mt-5 md:mt-20 max-h-screen">
-      <div className="md:w-2/6 mx-auto border bg-gray-200 rounded shadow-xl shadow-gray-900 p-5">
+    <div className="bg-gradient-to-r from-blue-500 md:from-blue-950">
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 min-h-screen">
+    <div className="md:w-1/2  mx-auto "  data-aos="fade-up"
+     data-aos-duration="1000">
+      <div className="md:w-3/4 mx-auto border bg-gray-200 rounded shadow-xl shadow-gray-900 p-5">
         <h1 className="text-2xl font-medium mb-5 text-orange-400">
           REGISTER 
         </h1>
@@ -160,6 +171,11 @@ const Register = () => {
           </fieldset>
         </form>
       </div>
+    </div>
+    <div className="md:w-2/6 hidden md:flex">
+        <Lottie animationData={loginAnimation}></Lottie>
+      </div>
+    </div>
     </div>
   );
 };

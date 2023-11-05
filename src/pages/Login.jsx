@@ -53,7 +53,7 @@ useEffect(() => {
   Aos.init(); 
 }, []);
   return (
-    <div className=" bg-blue-950"> 
+    <div className=" bg-gradient-to-r from-blue-500 md:from-blue-950"> 
     <div className=" max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 min-h-screen ">
       <div className="md:w-2/6  mx-auto border bg-gray-200 rounded shadow-lg shadow-gray-500 p-5" data-aos="fade-up"
      data-aos-duration="1000">

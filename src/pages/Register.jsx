@@ -69,9 +69,9 @@ const Register = () => {
   //login with google
   const handleGoogleSing = () => {
     singInWithGoogle()
-      .then((res) => {
+      .then(() => {
         toast.success("Success Login with Google");
-        console.log(res.user)
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         setError(error.message);

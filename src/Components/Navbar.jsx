@@ -18,7 +18,7 @@ const Navbar = ({ children }) => {
     } 
 
     const navRoute = <>
-        <li className='font-medium'>
+        <li>
             <NavLink
                 to="/"
                 className={({ isActive }) =>`
@@ -28,7 +28,27 @@ const Navbar = ({ children }) => {
                 Home
             </NavLink>
         </li>
-        {user?.email ? <button onClick={handleLogout} className='btn btn-sm btn-outline mr-2'>Logout</button>: <li className='font-medium'>
+        <li>
+            <NavLink
+                to="/rooms"
+                className={({ isActive }) =>`
+                    ${isActive ? "bg-orange-400" : "btn-outline"} btn btn-sm mr-2`
+                }
+            >
+                Rooms
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to="/myBookings"
+                className={({ isActive }) =>`
+                    ${isActive ? "bg-orange-400" : "btn-outline"} btn btn-sm mr-2`
+                }
+            >
+                My Bookings
+            </NavLink>
+        </li>
+        {user?.email ? <button onClick={handleLogout} className='btn btn-sm btn-outline mr-2'>Logout</button>: <li>
             <NavLink
                 to="/login"
                 className={({ isActive }) =>`
@@ -41,6 +61,8 @@ const Navbar = ({ children }) => {
         
 
     </>
+
+    
     return (
         <div className="drawer">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />

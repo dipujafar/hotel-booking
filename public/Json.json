@@ -1,0 +1,166 @@
+[
+  {
+    "image": "https://i.ibb.co/3dZTZDK/bedroom-490779-640.jpg",
+    "price_per_night": 150,
+    "room_description": "Deluxe King Suite with Ocean View",
+    "room_size": 450,
+    "availability": true,
+    "special_offers": "10% off for a 3-night stay",
+    "reviews": [
+      {
+        "user": "John Doe",
+        "rating": 4.5,
+        "comment": "Beautiful room with a stunning view!"
+      },
+      {
+        "user": "Jane Smith",
+        "rating": 5.0,
+        "comment": "Absolutely amazing. Will stay here again."
+      }
+    ]
+  },
+  {
+    "image": "https://i.ibb.co/dcRv8Bj/bedroom-1285156-1280.jpg",
+    "price_per_night": 120,
+    "room_description": "Cozy Queen Room",
+    "room_size": 300,
+    "availability": true,
+    "special_offers": "Free breakfast included",
+    "reviews": []
+  },
+  {
+    "image": "https://i.ibb.co/pdsB2fB/bride-301816-640.jpg",
+    "price_per_night": 200,
+    "room_description": "Luxury Penthouse Suite",
+    "room_size": 800,
+    "availability": true,
+    "special_offers": "N/A",
+    "reviews": [
+      {
+        "user": "Eleanor Davis",
+        "rating": 5.0,
+        "comment": "An unforgettable experience."
+      },
+      {
+        "user": "Michael Clark",
+        "rating": 4.8,
+        "comment": "Worth every penny."
+      }
+    ]
+  },
+  {
+    "image": "https://i.ibb.co/ypwpp0v/hotel-1979406-1280.jpg",
+    "price_per_night": 90,
+    "room_description": "Standard Double Room",
+    "room_size": 250,
+    "availability": true,
+    "special_offers": "15% off for a 7-night stay",
+    "reviews": [
+      {
+        "user": "Grace Baker",
+        "rating": 3.2,
+        "comment": "Decent room for a short stay."
+      },
+      {
+        "user": "David Miller",
+        "rating": 4.0,
+        "comment": "Good value for the price."
+      }
+    ]
+  },
+  {
+    "image": "https://i.ibb.co/ZhSWMGP/istockphoto-627892060-1024x1024.jpg",
+    "price_per_night": 180,
+    "room_description": "Executive Suite with City View",
+    "room_size": 600,
+    "availability": true,
+    "reviews": []
+  },
+  {
+    "image": "https://i.ibb.co/8xYh5HV/istockphoto-1130082073-1024x1024.jpg",
+    "price_per_night": 130,
+    "room_description": "Family Suite with Garden View",
+    "room_size": 400,
+    "availability": true,
+    "special_offers": "20% off for children under 12",
+    "reviews": [
+      {
+        "user": "Sophia Lee",
+        "rating": 4.2,
+        "comment": "A comfortable family-friendly room."
+      },
+      {
+        "user": "Liam Harris",
+        "rating": 4.0,
+        "comment": "Good for a family vacation."
+      }
+    ]
+  },
+  {
+    "image": "https://i.ibb.co/Qk14Z0V/istockphoto-1130082067-1024x1024.jpg",
+    "price_per_night": 160,
+    "room_description": "Business Suite with Workspace",
+    "room_size": 350,
+    "availability": true,
+    "special_offers": "Free Wi-Fi included",
+    "reviews": [
+      {
+        "user": "Mia Anderson",
+        "rating": 4.6,
+        "comment": "Perfect for a work trip."
+      },
+      {
+        "user": "Noah King",
+        "rating": 4.4,
+        "comment": "Convenient for business travelers."
+      }
+    ]
+  },
+  {
+    "image": "https://i.ibb.co/dsZv2VV/room-2269594-1280.jpg",
+    "price_per_night": 110,
+    "room_description": "Deluxe Twin Room with Balcony",
+    "room_size": 320,
+    "availability": true,
+    "reviews": [
+      {
+        "user": "Ava Turner",
+        "rating": 3.8,
+        "comment": "Nice room with a view."
+      },
+      {
+        "user": "William Hall",
+        "rating": 4.2,
+        "comment": "A good stay for the price."
+      }
+    ]
+  },
+  {
+    "image": "https://i.ibb.co/kcZzY5w/window-3178666-640.jpg",
+    "price_per_night": 250,
+    "room_description": "Presidential Suite with Private Pool",
+    "room_size": 1000,
+    "availability": true,
+    "reviews": [
+      {
+        "user": "Chloe White",
+        "rating": 5.0,
+        "comment": "A truly luxurious experience."
+      },
+      {
+        "user": "Henry Allen",
+        "rating": 4.9,
+        "comment": "The best suite I've ever stayed in."
+      }
+    ]
+  },
+  {
+    "image": "https://i.ibb.co/JrGbbxQ/travel-1677347-640.jpg",
+    "price_per_night": 75,
+    "room_description": "Economy Single Room",
+    "room_size": 180,
+    "availability": true ,
+    "special_offers": "5% off for advance bookings",
+    "reviews": []
+  }
+]

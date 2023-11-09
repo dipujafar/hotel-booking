@@ -5,13 +5,16 @@ import { Helmet } from "react-helmet";
 import Loading from "../../Components/Loading";
 import useAuth from "../../hooks/useAuth";
 import BookedRoom from "./BookedRoom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyBooking = () => {
   const {user} = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const url = `/myBooking?email=${user?.email}`
     const { data, isLoading } = useQuery({
         queryKey: ["myBooking"],
         queryFn: async () => {
-          const roomsData = await axios.get(`http://localhost:5000/myBooking?email=${user?.email}`, {withCredentials: true});
+          const roomsData = await axiosSecure(url)
           return roomsData;
         },
       });

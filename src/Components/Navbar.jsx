@@ -88,7 +88,9 @@ const Navbar = ({ children }) => {
                     </div>
                 </div>
                 {/* Page content here */}
+                <div>
                 {children}
+                </div>
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>

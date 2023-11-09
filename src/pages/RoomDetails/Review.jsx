@@ -1,6 +1,7 @@
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import moment from 'moment/moment';
+import PropTypes from "prop-types";
 const Review = ({review}) => {
     const {user, rating, comment, date} = review || {};
     return (
@@ -17,6 +18,10 @@ const Review = ({review}) => {
         </div>
       </div>
     );
+};
+
+Review.propTypes = {
+  review: PropTypes.object,
 };
 
 export default Review;

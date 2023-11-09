@@ -2,11 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../layout/Root";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import MyBookings from "../pages/MyBookings";
 import Home from "../pages/Home";
 import ErrorPage from "../pages/ErrorPage";
 import Rooms from "../pages/Rooms/Rooms";
 import RoomDetails from "../pages/RoomDetails/RoomDetails";
+import MyBooking from "../pages/MyBooking/MyBooking";
+import PrivateRoute from "./privateRoute/privateRoute";
 
 
 const route =  createBrowserRouter([
@@ -29,7 +30,7 @@ const route =  createBrowserRouter([
         },
         {
           path: 'myBookings',
-          element: <MyBookings></MyBookings>
+          element: <PrivateRoute><MyBooking></MyBooking></PrivateRoute>
         },
       ]
     },

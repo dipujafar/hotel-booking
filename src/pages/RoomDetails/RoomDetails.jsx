@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../../Components/Loading";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
@@ -8,11 +8,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment/moment";
 import { Helmet } from "react-helmet";
 import Review from "./Review";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const RoomDetails = () => {
+  const {user} = useAuth();
+  const email = user?.email;
+  console.log(user?.email) 
   const { id } = useParams();
   const [startDate, setStartDate] = useState(new Date());
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["roomData"],
     queryFn: async () => {
       const roomsData = await axios.get(`http://localhost:5000/rooms/${id}`);
@@ -29,7 +34,44 @@ const RoomDetails = () => {
     special_offers,
     reviews,
   } = data?.data || {};
-  console.log(reviews);
+
+  //Room Book Function
+  const handleBook = () =>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: `Price : $${price_per_night} Date: ${moment(startDate).format("dddd, MMMM Do YYYY")} Room: ${room_description}`,
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirm"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const bookInfo = {email, price_per_night, room_size, room_description, startDate, image};
+        axios.post('http://localhost:5000/booking', bookInfo)
+        .then(res=>{
+          console.log(res.data)
+          if(res?.data?.insertedId){
+            alert('booked')
+          }
+          if(res?.data?.insertedId){
+            axios.patch(`http://localhost:5000/updateAvailable/${_id}`)
+            .then(()=> refetch());
+          }
+        })
+        
+
+        // Swal.fire({
+        //   title: "Deleted!",
+        //   text: "Your file has been deleted.",
+        //   icon: "success"
+        // });
+      }
+    });
+
+  }
+
+
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -78,12 +120,14 @@ const RoomDetails = () => {
             </div>
           </div>
           <div className="card-actions justify-end">
-            {availability ? (
-              <button className="btn btn-sm btn-outline btn-info">
+            {user?.email ? (
+              <button onClick={handleBook} className={`btn btn-sm btn-outline ${availability ? "" : "btn-disabled"} btn-info`}>
                 Book Now
               </button>
             ) : (
-              <button className="btn btn-sm btn-disabled">Book Now</button>
+              <Link to="/login">
+              <button className="btn btn-sm btn-outline btn-info">Login for booking </button>
+              </Link>
             )}
           </div>
         </div>

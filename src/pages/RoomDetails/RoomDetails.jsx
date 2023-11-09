@@ -10,17 +10,17 @@ import { Helmet } from "react-helmet";
 import Review from "./Review";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const RoomDetails = () => {
   const {user} = useAuth();
   const email = user?.email;
-  console.log(user?.email) 
   const { id } = useParams();
   const [startDate, setStartDate] = useState(new Date());
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["roomData"],
     queryFn: async () => {
-      const roomsData = await axios.get(`http://localhost:5000/rooms/${id}`);
+      const roomsData = await axios.get(`https://hotel-booking-server-bay.vercel.app/rooms/${id}`);
       return roomsData;
     },
   });
@@ -48,14 +48,13 @@ const RoomDetails = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const bookInfo = {email, price_per_night, room_size, room_description, startDate, image};
-        axios.post('http://localhost:5000/booking', bookInfo)
+        axios.post('https://hotel-booking-server-bay.vercel.app/booking', bookInfo)
         .then(res=>{
-          console.log(res.data)
           if(res?.data?.insertedId){
-            alert('booked')
+            toast.success("Successfully Booked Room")
           }
           if(res?.data?.insertedId){
-            axios.patch(`http://localhost:5000/updateAvailable/${_id}`)
+            axios.patch(`https://hotel-booking-server-bay.vercel.app/updateAvailable/${_id}`)
             .then(()=> refetch());
           }
         })

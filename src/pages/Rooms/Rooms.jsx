@@ -11,7 +11,7 @@ const Rooms = () => {
     const {data, isLoading} = useQuery({
         queryKey: ["rooms"],
         queryFn: async ()=>{
-           const roomsData = await axios.get('http://localhost:5000/rooms')
+           const roomsData = await axios.get('https://hotel-booking-server-bay.vercel.app/rooms')
             return roomsData;
         }
     });

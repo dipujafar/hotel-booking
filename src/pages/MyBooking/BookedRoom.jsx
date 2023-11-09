@@ -1,8 +1,11 @@
+import axios from "axios";
 import moment from "moment";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 
-const BookedRoom = ({ room }) => {
+const BookedRoom = ({ room, refetch }) => {
   const {
+    _id,
     email,
     price_per_night,
     room_size,
@@ -10,6 +13,34 @@ const BookedRoom = ({ room }) => {
     startDate,
     image,
   } = room || {};
+
+  const handleDelete = ()=>{
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't Cancel this booking?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, cancel it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            axios.delete(`https://hotel-booking-server-bay.vercel.app//myBooking/${_id}`)
+            .then(res =>{
+                if(res?.data?.deletedCount > 0){
+                     Swal.fire({
+                            title: "Cancelled!",
+                            text: "Your Room booking cancelled.",
+                            icon: "success"
+                          });
+                          refetch()
+                }
+            })
+        
+        }
+      });
+  }
 
   return (
     <div>
@@ -28,7 +59,7 @@ const BookedRoom = ({ room }) => {
           <p className="text-lg">Date: {moment(startDate).format("dddd, MMMM Do YYYY")}</p>
           </div>
           <div className="card-actions justify-end">
-            <button className="btn btn-outline btn-error btn-sm">Cancel</button>
+            <button onClick={handleDelete} className="btn btn-outline btn-error btn-sm">Cancel</button>
           </div>
         </div>
       </div>

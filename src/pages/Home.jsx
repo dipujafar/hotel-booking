@@ -1,10 +1,11 @@
-import Imagery from "../Components/Imagery";
+import Banner from "../Components/banner";
+
 
 
 const Home = () => {
     return (
         <div className="max-w-7xl mx-auto">
-            {/* <Imagery></Imagery> */}
+            <Banner></Banner>
         </div>
     );
 };

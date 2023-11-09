@@ -1,6 +1,5 @@
 
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Helmet } from "react-helmet";
 import Loading from "../../Components/Loading";
 import useAuth from "../../hooks/useAuth";
@@ -11,7 +10,7 @@ const MyBooking = () => {
   const {user} = useAuth();
   const axiosSecure = useAxiosSecure();
   const url = `/myBooking?email=${user?.email}`
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, refetch } = useQuery({
         queryKey: ["myBooking"],
         queryFn: async () => {
           const roomsData = await axiosSecure(url)
@@ -34,7 +33,7 @@ const MyBooking = () => {
       </div>
       <div className="grid md:grid-cols-2 gap-10">
         {data?.data.length?
-            data?.data?.map((room, inx)=><BookedRoom key={inx} room={room}></BookedRoom>): <h1 className="mt-10 text-center text-3xl font-bold">You have no Booked Room </h1>
+            data?.data?.map((room, inx)=><BookedRoom key={inx} refetch={refetch} room={room}></BookedRoom>): <h1 className="mt-10 text-center text-3xl font-bold">You have no Booked Room </h1>
         }
       </div>
     </div>

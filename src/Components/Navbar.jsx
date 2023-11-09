@@ -13,9 +13,7 @@ const Navbar = ({ children }) => {
         .then(()=>{
             toast.success("Successfully Logged Out")
         })
-        .catch(error=>{
-            console.log(error)
-        })
+        .catch()
     } 
 
     const navRoute = <>

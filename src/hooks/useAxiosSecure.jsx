@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: "https://hotel-booking-server-bay.vercel.app",
     withCredentials: true
 })
 
@@ -19,7 +19,7 @@ const useAxiosSecure = () => {
             if(error.response.status === 401 || error.response.status === 403){
                 logOut()
                 .then( navigate('/login'))
-                .catch(error=>console.log(error))
+                .catch()
             }
         }
         )

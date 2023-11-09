@@ -35,8 +35,12 @@ const AuthProvider = ({children}) => {
             if(currentUser){
                 const email = currentUser?.email;
             const userData = {email};
-                axios.post('http://localhost:5000/jwt', userData,{ withCredentials: true})
-                .then(res=> console.log(res.data))
+                axios.post('https://hotel-booking-server-bay.vercel.app/jwt', userData,{ withCredentials: true})
+                .then()
+            }
+            else{
+                axios.post("https://hotel-booking-server-bay.vercel.app/logout",{} ,{withCredentials: true})
+                .then()
             }
         });
         return ()=>{

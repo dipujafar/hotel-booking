@@ -60,9 +60,7 @@ const Register = () => {
             toast("Successfully Create User");
             navigate(location?.state ? location.state : "/");
           })
-          .catch((error) => {
-            console.log(error.message);
-          });
+          .catch();
       })
       .catch((error) => setError(error.message));
   };
